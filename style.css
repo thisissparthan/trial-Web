@@ -1,0 +1,89 @@
+/* Reset dasar */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f5f5f5;
+}
+
+/* Bungkus header dan wave */
+.wrapper-header-wave {
+  position: relative;
+  background-color: #03a9f4;
+  overflow: hidden;
+}
+
+/* SVG wave jadi bagian background atas */
+.wave-bg {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: auto;
+  z-index: 1;
+}
+
+/* Header di atas wave */
+header {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 40px;
+  color: white;
+  max-width: 1140px;
+  margin: 0 auto;
+}
+
+/* Logo */
+.logo img {
+  height: 60px;
+}
+
+/* Navigasi */
+nav ul {
+  list-style: none;
+  display: flex;
+  gap: 20px;
+}
+
+nav ul li a {
+  text-decoration: none;
+  color: white;
+  font-weight: 500;
+}
+
+nav ul li a:hover {
+  opacity: 0.8;
+}
+
+/* Tombol WhatsApp */
+.whatsapp-button {
+  display: flex;
+  align-items: center;
+  background-color: white;
+  color: #03a9f4;
+  padding: 10px 15px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: bold;
+  gap: 10px;
+}
+
+.whatsapp-button svg {
+  width: 20px;
+  height: 20px;
+  fill: #03a9f4;
+}
+
+/* Wave styling */
+.wave-bg svg {
+  display: block;
+  width: 100%;
+  height: 150px;
+}

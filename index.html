@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bali Driver Adventures - Sopir Pribadi untuk Turis</title>
+    
+    <style>
+        /* Reset dan Font */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Arial', sans-serif; color: #fff; overflow-x: hidden; }
+        h1, h2, h3 { font-family: 'Georgia', serif; }
+
+        /* Header */
+        header { position: fixed; top: 0; width: 100%; background: rgba(0, 0, 0, 0.8); z-index: 100; padding: 10px; display: flex; justify-content: space-between; align-items: center; }
+        nav ul { list-style: none; display: flex; }
+        nav ul li { margin: 0 20px; }
+        nav a { color: #fff; text-decoration: none; transition: color 0.3s; }
+        nav a:hover { color: #FFD700; }
+
+        /* Hero Section dengan Slider */
+        .hero { height: 100vh; position: relative; overflow: hidden; }
+        .hero-slider { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-size: cover; background-position: center; animation: slide 15s infinite; }
+        .hero-slider:nth-child(1) { background-image: url(assets/jimbaranbeach.jpg); }
+        .hero-slider:nth-child(2) { background-image: url(assets/tanahlot.jpg); }
+        .hero-slider:nth-child(3) { background-image: url(assets/tegalalang-rice-terrace-photo.jpg); }
+        @keyframes slide { 0% { opacity: 1; } 33% { opacity: 0; } 100% { opacity: 1; } }
+        .hero-content { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center; z-index: 10; animation: fadeIn 2s; }
+        @keyframes fadeIn { from { opacity: 0; transform: translate(-50%, -60%); } to { opacity: 1; transform: translate(-50%, -50%); } }
+        .hero h1 { font-size: 4em; text-shadow: 2px 2px 4px rgba(0,0,0,0.7); }
+        .hero p { font-size: 1.5em; margin: 20px 0; }
+        .btn { background: #FFD700; color: #000; padding: 15px 30px; border: none; cursor: pointer; font-size: 1.2em; transition: all 0.3s; border-radius: 50px; }
+        .btn:hover { background: #FFA500; transform: scale(1.1); }
+
+        /* Partikel Hujan Tropis (Imajinasi AI) */
+        .rain { position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 1; }
+        .drop { position: absolute; width: 2px; height: 20px; background: rgba(255,255,255,0.5); animation: fall 1s linear infinite; }
+        @keyframes fall { to { transform: translateY(100vh); } }
+
+        /* Section Layanan */
+        .services { padding: 100px 20px; background: linear-gradient(45deg, #228B22, #32CD32); text-align: center; }
+        .service-card { display: inline-block; width: 300px; margin: 20px; padding: 20px; background: rgba(255,255,255,0.1); border-radius: 10px; transition: transform 0.3s, box-shadow 0.3s; cursor: pointer; }
+        .service-card:hover { transform: translateY(-10px) rotate(2deg); box-shadow: 0 10px 20px rgba(0,0,0,0.3); }
+        .service-card img { width: 100%; height: 200px; object-fit: cover; border-radius: 10px; }
+
+        /* Galeri Interaktif */
+        .gallery { padding: 100px 20px; background: #000; }
+        .gallery img { width: 30%; margin: 10px; transition: transform 0.3s; cursor: pointer; }
+        .gallery img:hover { transform: scale(1.1); }
+
+        /* Testimoni dengan Animasi */
+        .testimonials { padding: 100px 20px; background: linear-gradient(45deg, #FFD700, #FFA500); text-align: center; }
+        .testimonial { margin: 20px; padding: 20px; background: rgba(255,255,255,0.9); color: #000; border-radius: 10px; animation: bounceIn 1s; }
+        @keyframes bounceIn { from { opacity: 0; transform: scale(0.5); } to { opacity: 1; transform: scale(1); } }
+
+        /* Footer */
+        footer { padding: 20px; background: #000; text-align: center; }
+
+        /* Popup Formulir Pemesanan */
+        .popup { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 200; justify-content: center; align-items: center; }
+        .popup-content { background: #fff; padding: 20px; border-radius: 10px; width: 400px; text-align: center; }
+        .popup-content input, .popup-content button { width: 100%; margin: 10px 0; padding: 10px; }
+    </style>
+
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <h2>Bali Driver Adventures</h2>
+        <nav>
+            <ul>
+                <li><a href="#hero">Beranda</a></li>
+                <li><a href="#services">Layanan</a></li>
+                <li><a href="#gallery">Galeri</a></li>
+                <li><a href="#testimonials">Testimoni</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="hero" class="hero">
+        <div class="hero-slider"></div>
+        <div class="hero-slider"></div>
+        <div class="hero-slider"></div>
+        <div class="rain" id="rain"></div>
+        <div class="hero-content">
+            <h1>Selamat Datang di Bali!</h1>
+            <p>Jelajahi pulau Dewata dengan sopir pribadi yang ahli. Petualangan tak terlupakan menanti!</p>
+            <button class="btn" onclick="openPopup()">Pesan Sekarang</button>
+        </div>
+    </section>
+
+    <!-- Layanan -->
+    <section id="services" class="services">
+        <h2>Layanan Kami</h2>
+        <div class="service-card" onclick="alert('Sopir profesional siap antar Anda ke mana saja!')">
+            <img src="assets/driver.jpg" alt="Sopir Profesional">
+            <h3>Sopir Profesional</h3>
+            <p>Pengalaman bertahun-tahun, ramah, dan tahu semua spot terbaik di Bali.</p>
+        </div>
+        <div class="service-card" onclick="alert('Mobil mewah untuk kenyamanan maksimal!')">
+            <img src="assets/driver.jpg" alt="Mobil Mewah">
+            <h3>Mobil Mewah</h3>
+            <p>Armada terbaru dengan AC, WiFi, dan interior yang nyaman.</p>
+        </div>
+        <div class="service-card" onclick="alert('Paket wisata custom sesuai keinginan Anda!')">
+            <img src="assets/driver.jpg" alt="Paket Wisata">
+            <h3>Paket Wisata</h3>
+            <p>Dari pantai hingga gunung, kami siapkan rute impian Anda.</p>
+        </div>
+    </section>
+
+    <!-- Galeri -->
+    <section id="gallery" class="gallery">
+        <h2>Galeri Petualangan</h2>
+        <img src="assets/jimbaranbeach.jpg" alt="Pantai Bali" onclick="alert('Pantai Kuta yang indah!')">
+        <img src="assets/tanahlot.jpg" alt="Sawah Terasering" onclick="alert('Sawah Tegallalang yang hijau!')">
+        <img src="assets/tegalalang-rice-terrace-photo.jpg" alt="Pura Bali" onclick="alert('Pura Besakih yang sakral!')">
+    </section>
+
+    <!-- Testimoni -->
+    <section id="testimonials" class="testimonials">
+        <h2>Apa Kata Pelanggan Kami?</h2>
+        <div class="testimonial">"Sopirnya super ramah, bawa saya ke tempat-tempat tersembunyi. Bali jadi lebih seru!" - John, USA</div>
+        <div class="testimonial">"Mobilnya nyaman, rutenya tepat waktu. Recommended banget!" - Sari, Indonesia</div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2023 Bali Driver Adventures. Hubungi kami di info@balidriver.com</p>
+    </footer>
+
+    <!-- Popup Formulir -->
+    <div id="popup" class="popup">
+        <div class="popup-content">
+            <h3>Pesan Sopir Anda</h3>
+            <input type="text" placeholder="Nama Anda">
+            <input type="email" placeholder="Email">
+            <input type="date" placeholder="Tanggal">
+            <button onclick="alert('Terima kasih! Kami akan hubungi Anda segera.'); closePopup();">Kirim</button>
+            <button onclick="closePopup()">Tutup</button>
+        </div>
+    </div>
+
+    <script>
+        // Animasi Hujan Tropis
+        function createRain() {
+            const rain = document.getElementById('rain');
+            for (let i = 0; i < 50; i++) {
+                const drop = document.createElement('div');
+                drop.className = 'drop';
+                drop.style.left = Math.random() * 100 + '%';
+                drop.style.animationDelay = Math.random() * 2 + 's';
+                rain.appendChild(drop);
+            }
+        }
+        createRain();
+
+        // Popup Functions
+        function openPopup() { document.getElementById('popup').style.display = 'flex'; }
+        function closePopup() { document.getElementById('popup').style.display = 'none'; }
+
+        // Scroll Animasi (Elemen muncul saat scroll)
+        window.addEventListener('scroll', () => {
+            const elements = document.querySelectorAll('.service-card, .testimonial');
+            elements.forEach(el => {
+                const rect = el.getBoundingClientRect();
+                if (rect.top < window.innerHeight) {
+                    el.style.opacity = '1';
+                    el.style.transform = 'translateY(0)';
+                }
+            });
+        });
+    </script>
+</body>
+</html>
